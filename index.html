@@ -13,7 +13,6 @@
 
         body {
             font-family: 'Georgia', 'Segoe UI', serif;
-            /* Grand Ballroom Midnight Blue & Regal Purple Silk Gradient */
             background: linear-gradient(135deg, #0b132b 0%, #1c2541 40%, #3a0ca3 100%);
             min-height: 100vh;
             display: flex;
@@ -23,7 +22,6 @@
             position: relative;
         }
 
-        /* Glistening Grand Gold Dust & Fairy Lights Effect */
         .gold-dust {
             position: absolute;
             border-radius: 50%;
@@ -32,7 +30,7 @@
             opacity: 0.7;
         }
 
-        /* --- PAGE 1: DEBUTANTE GREETING CARD --- */
+        /* --- CARD STYLE --- */
         .card {
             background: rgba(255, 255, 255, 0.92);
             padding: 45px 40px;
@@ -42,18 +40,15 @@
             max-width: 460px;
             width: 90%;
             z-index: 10;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(8px);
-            border: 2px solid rgba(212, 175, 55, 0.4); /* Elegant gold border */
+            border: 2px solid rgba(212, 175, 55, 0.4);
         }
 
         .card h1 {
-            color: #d4af37; /* Rose Gold / Metallic Gold */
-            font-size: 2.8rem;
+            color: #d4af37;
+            font-size: 2.5rem;
             margin-bottom: 5px;
-            font-family: 'Georgia', serif;
             letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
         .card h2 {
@@ -65,15 +60,49 @@
             font-weight: 600;
         }
 
-        .card p {
-            color: #333333;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            font-style: italic;
+        /* --- THE COUNTDOWN LAYOUT --- */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        /* Main Luxury Buttons Style */
+        .countdown-box {
+            background: linear-gradient(135deg, #4a0e4e, #310834);
+            color: #fffdf6;
+            padding: 12px 8px;
+            border-radius: 14px;
+            min-width: 72px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            color: #d4af37;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .countdown-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .status-msg {
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* --- ACTION BUTTONS --- */
         .btn {
             font-family: 'Segoe UI', sans-serif;
             color: white;
@@ -84,21 +113,27 @@
             letter-spacing: 1px;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            transition: all 0.3s ease;
         }
 
         .wish-btn {
-            background: linear-gradient(45deg, #d4af37, #aa7c11); /* Gold Gradient */
+            background: linear-gradient(45deg, #d4af37, #aa7c11);
             box-shadow: 0 5px 25px rgba(212, 175, 55, 0.4);
-            color: #fff;
         }
 
-        .wish-btn:hover {
+        .wish-btn:hover:not(:disabled) {
             transform: scale(1.05) translateY(-2px);
             box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
         }
 
-        /* --- PAGE 2: ROYAL ENVELOPE AREA --- */
+        .wish-btn:disabled {
+            background: linear-gradient(45deg, #7f8c8d, #95a5a6);
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* --- ENVELOPE INTERACTION --- */
         .envelope-wrapper {
             display: none;
             flex-direction: column;
@@ -118,18 +153,16 @@
             perspective: 1000px;
         }
 
-        /* The luxury envelope base */
         .envelope {
             position: relative;
             width: 100%;
             height: 100%;
-            background: #4a0e4e; /* Royal Crimson/Plum Deep Red */
+            background: #4a0e4e;
             border-radius: 0 0 12px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        /* Envelope Flap */
         .flap {
             position: absolute;
             top: 0;
@@ -138,13 +171,12 @@
             height: 0;
             border-left: 180px solid transparent;
             border-right: 180px solid transparent;
-            border-top: 135px solid #310834; /* Darker tone for depth */
+            border-top: 135px solid #310834;
             transform-origin: top;
             transition: transform 0.4s ease 0.2s;
             z-index: 3;
         }
 
-        /* Envelope Pockets */
         .pocket {
             position: absolute;
             bottom: 0;
@@ -158,14 +190,13 @@
             z-index: 2;
         }
 
-        /* The Letter inside */
         .letter {
             position: absolute;
             top: 10px;
             left: 15px;
             width: 330px;
             height: 220px;
-            background: #fffdf6; /* Off-white ivory paper style */
+            background: #fffdf6;
             border-radius: 8px;
             padding: 25px 20px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15);
@@ -180,17 +211,14 @@
             color: #aa7c11;
             margin-bottom: 12px;
             font-size: 1.4rem;
-            font-family: 'Georgia', serif;
         }
 
         .letter p {
             color: #333;
             font-size: 0.95rem;
             line-height: 1.6;
-            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Elegant Back Button Style */
         .back-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(212, 175, 55, 0.5);
@@ -199,16 +227,13 @@
             padding: 10px 26px;
             font-size: 0.95rem;
             margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .back-btn:hover {
             background: rgba(212, 175, 55, 0.2);
-            transform: translateY(-2px);
             color: #fff;
         }
 
-        /* --- ANIMATION STATES WHEN OPENED --- */
         .envelope-container.open .flap {
             transform: rotateX(180deg);
             z-index: 0;
@@ -218,22 +243,15 @@
         .envelope-container.open .letter {
             transform: translateY(-140px);
             z-index: 4;
-            height: 290px; 
+            height: 290px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        /* Keyframes for Floating Golden Fairy Dust & Lights */
         @keyframes floatUp {
-            0% {
-                transform: translateY(105vh) translateX(0) scale(0.3);
-                opacity: 0;
-            }
+            0% { transform: translateY(105vh) translateX(0) scale(0.3); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% {
-                transform: translateY(-10vh) translateX(30px) scale(1);
-                opacity: 0;
-            }
+            100% { transform: translateY(-10vh) translateX(30px) scale(1); opacity: 0; }
         }
 
         .hidden { display: none !important; }
@@ -241,22 +259,17 @@
 </head>
 <body>
 
-    <!-- Dynamic Luxury Gold Dust Magic -->
+    <!-- Ambient Floating Gold Particle Script -->
     <script>
-        // Creates mix of warm glowing gold dust and larger bokeh fairy lights
         const goldShades = ['#d4af37', '#f3e5ab', '#ffdf7a', '#aa7c11', '#ffffff'];
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 40; i++) {
             let dust = document.createElement('div');
             dust.classList.add('gold-dust');
             dust.style.top = Math.random() * 100 + 'vh';
             dust.style.left = Math.random() * 100 + 'vw';
-            
-            // Randomize sizing for true depth effect
-            let size = Math.random() * 12 + 2; 
+            let size = Math.random() * 10 + 2;
             dust.style.width = dust.style.height = size + 'px';
-            
             dust.style.backgroundColor = goldShades[Math.floor(Math.random() * goldShades.length)];
-            // Soft glow wrap
             dust.style.boxShadow = `0 0 ${size}px ${dust.style.backgroundColor}`;
             dust.style.animationDuration = Math.random() * 5 + 5 + 's';
             dust.style.animationDelay = Math.random() * 4 + 's';
@@ -264,71 +277,20 @@
         }
     </script>
 
-    <!-- PAGE 1: Grand Debut Greeting -->
+    <!-- MAIN INTERFACE PAGE -->
     <div class="card" id="greetingCard">
         <h1>Happy 18th Birthday! 🎉</h1>
         <h2>Welcome to Chapter 18 ✨</h2>
-        <p>
-           
-        </p>
-        <button class="btn wish-btn" onclick="goToEnvelope()">Make a Wish ✨</button>
-    </div>
-
-    <!-- PAGE 2: Interactive Invitation Envelope -->
-    <div class="envelope-wrapper" id="envelopeScreen">
-        <div class="envelope-container" id="myEnvelope" onclick="openEnvelope()">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="letter">
-                <h3>To the Beautiful Debutante 👑</h3>
-                <p>
-                    Happy 18th Birthday! 🎂 <br><br>
-                    Welcome to adulthood! Today marks the start of a brand new adventure. I hope your special night is absolutely unforgettable, filled with amazing memories, dancing, and smiles. May all your highest aspirations and biggest dreams unfold beautifully this year. Cheers to 18! 💖✨
-                </p>
-            </div>
-        </div>
         
-        <!-- Navigation Back Button -->
-        <button class="btn back-btn" onclick="goToFrontPage()">← View Main Card</button>
-    </div>
-
-    <script>
-        const card = document.getElementById('greetingCard');
-        const wrapper = document.getElementById('envelopeScreen');
-        const envelope = document.getElementById('myEnvelope');
-
-        function goToEnvelope() {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.9) translateY(-20px)';
-            
-            setTimeout(() => {
-                card.classList.add('hidden');
-                wrapper.style.display = 'flex';
-                
-                setTimeout(() => {
-                    wrapper.style.opacity = '1';
-                }, 50);
-            }, 600);
-        }
-
-        function goToFrontPage() {
-            envelope.classList.remove('open');
-            wrapper.style.opacity = '0';
-            
-            setTimeout(() => {
-                wrapper.style.display = 'none';
-                card.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1) translateY(0)';
-                }, 50);
-            }, 600);
-        }
-
-        function openEnvelope() {
-            envelope.classList.toggle('open');
-        }
-    </script>
-</body>
-</html>
+        <!-- Live Countdown Grid Container -->
+        <div class="countdown-container" id="countdownBoard">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hrs</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
