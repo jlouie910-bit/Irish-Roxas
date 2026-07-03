@@ -190,16 +190,15 @@
             box-shadow: 0 5px 20px rgba(124, 58, 237, 0.3);
         }
 
-        /* Small box action button inside Love Note */
         .gallery-trigger-btn {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            padding: 10px 20px;
-            font-size: 0.85rem;
-            border-radius: 10px;
-            margin-top: 25px;
-            display: inline-block;
-            width: auto;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            padding: 12px 32px;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            margin: 20px auto 10px auto;
+            display: block;
+            width: fit-content;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
         }
 
         .wish-btn:hover:not(:disabled), .love-btn:hover:not(:disabled), .gallery-trigger-btn:hover {
@@ -313,23 +312,15 @@
             text-justify: inter-word;
         }
 
-        /* Flex wrap layout for Love letter to position box button elegantly */
-        .love-text-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
         /* --- SECOND PAGE: PHOTO GALLERY PANEL --- */
         .gallery-view {
             display: none;
             width: 100%;
             max-width: 650px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             border-radius: 24px;
-            padding: 35px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+            padding: 45px 35px 35px 35px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08);
             z-index: 30;
             text-align: center;
             border: 2px solid #e9d5ff;
@@ -338,38 +329,174 @@
 
         .gallery-view h2 {
             color: #7c3aed;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             font-size: 1.8rem;
         }
 
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 35px 25px;
+            margin-bottom: 15px;
         }
 
-        /* Cute Polaroid container style for your photos */
+        /* --- HIGHLY AESTHETIC POLAROID FRAME DESIGN --- */
         .polaroid-frame {
-            background: white;
-            padding: 10px 10px 22px 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            background: #ffffff;
+            padding: 12px 12px 14px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 20px rgba(124, 58, 237, 0.06), 0 1px 3px rgba(0,0,0,0.05);
             border-radius: 4px;
-            border: 1px solid #f3f4f6;
+            border: 1px solid rgba(233, 213, 255, 0.4);
             transform: rotate(var(--rotation));
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Cute Metallic Push Pin Accent */
+        .polaroid-pin {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle at 4px 4px, #ff8fa3, #ff4d6d);
+            border-radius: 50%;
+            z-index: 12;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .polaroid-pin::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 6px;
+            width: 2px;
+            height: 8px;
+            background: #94a3b8;
+            transform: rotate(15deg);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Soft Elegant Caption Text underneath photo grid items */
+        .polaroid-caption {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #6b21a8;
+            margin-top: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* Interactive Action Hint */
+        .polaroid-hint {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.7rem;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
         .polaroid-frame:hover {
-            transform: rotate(0deg) scale(1.04);
+            transform: rotate(0deg) translateY(-6px) scale(1.04);
+            box-shadow: 0 20px 35px rgba(124, 58, 237, 0.12);
             z-index: 5;
         }
 
-        .polaroid-frame img {
+        .polaroid-frame:hover .polaroid-hint {
+            opacity: 1;
+            color: #db2777;
+        }
+
+        .polaroid-frame img, .video-preview-wrapper video {
             width: 100%;
-            height: 200px;
+            height: 185px;
             object-fit: cover;
             border-radius: 2px;
+            display: block;
+            border: 1px solid rgba(0,0,0,0.03);
+            filter: sepia(8%) brightness(98%) contrast(102%);
+        }
+
+        .video-preview-wrapper {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.92);
+            color: #7c3aed;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- THIRD PAGE: FULL CLEAN INDEPENDENT TARGET VIEW PAGE --- */
+        .full-media-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 247, 0.98);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .media-content-container {
+            max-width: 520px;
+            width: 90%;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(109, 40, 217, 0.15);
+            text-align: center;
+            border: 1px solid #e9d5ff;
+        }
+
+        .focused-media-item {
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .media-caption p {
+            font-size: 1.05rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin: 10px 0 15px 0;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: justify;
+            text-justify: inter-word;
+            background: #fff0f3;
+            padding: 14px;
+            border-radius: 10px;
+            border-left: 4px solid #7c3aed;
         }
 
         .back-btn {
@@ -379,7 +506,7 @@
             backdrop-filter: blur(5px);
             padding: 10px 26px;
             font-size: 0.95rem;
-            margin-top: 25px;
+            margin-top: 15px;
             width: auto;
         }
 
@@ -501,23 +628,21 @@
                 <!-- BIRTHDAY LETTER CONTENT -->
                 <div class="letter birthday-text" id="birthdayLetter">
                     <h3>Happy 18th Birthday!</h3>
-                    <p style="margin-bottom: 15px;">Today is such a huge and special day for you, and I am so incredibly happy to be here to celebrate your debut. Seeing you look so beautiful tonight and watching you step into this new chapter of your life as an adult is a moment I'm really grateful to share with you. 18 is a big milestone, and being able to witness you reach it is something I won't forget.</p>
-                    <p style="margin-bottom: 15px;">As you turn 18, I have so many wishes for you. First, I wish that you always stay true to yourself because the person you are right now is amazing. I wish you all the success in the world with your studies and whatever goals you set for yourself. I know that life can get stressful sometimes, so my wish is that you always find reasons to smile, that you are surrounded by genuine friends who lift you up, and that you stay safe and healthy every single day. You deserve the absolute best, and I hope this year brings you so much happiness and unforgettable memories.</p>
-                    <p style="margin-bottom: 15px;">I also want to take this moment to tell you how much it means to me that you let me stay by your side and court you. Getting to know you better every day has been the best part of my year. I always look forward to talking to you, hearing your laugh, and seeing your smile. You have this way of making ordinary days feel a lot brighter, and I want you to know how much I truly appreciate you just being you.</p>
-                    <p style="margin-bottom: 15px;">Being able to court you is a privilege, and as you start this journey into adulthood, I want to promise you that I will always treat you with the utmost respect and care. I’m more than willing to take things at your own pace, and I'll always be here to support you in everything you do. Whenever you feel tired, stressed, or just need someone to talk to, please remember that I am always just one message away. I want to be someone you can always count on, no matter what.</p>
-                    <p style="margin-bottom: 15px;">I hope you enjoy every single second of your party tonight because you deserve to feel like a princess. You look absolutely stunning, and I am so proud to be here cheering you on.</p>
-                    <p>Have the happiest 18th birthday! Enjoy your special night, and let's make it a memory you'll cherish forever! ✨</p>
+                    <p style="margin-bottom: 15px;">This day alam kong ito yung special day sayo, if you know kung gaano ako kasaya even if wala ako sa debut mo or party mo i still hope this letter makes you happy Kahit papaano and super saya ko na naabutan ko yung 18th birthday mo. Hindi man kita makita ngayong araw mismo sa party mo i know parin kung gaano ka kaganda and watching you as an adult is a moment na super grateful to share it with you. 18 is a big milestone, and being able to witness you reach it is something na hinding hindi ko malilimutan.</p>
+                    <p style="margin-bottom: 15px;">As you turn 18, super dami kong wish para sayo. First, I wish that you always stay true to yourself because the person you are right now is already so amazing. I wish you all the success in the world with your studies, your hobbies, and whatever big goals you set for yourself in the future. alam ko minsan sa buhay super stressful, nakakaoverwhelm, especially ngayong papasok ka na sa adulthood, so my wish is that you always find reasons to smile, that you are always surrounded by genuine friends who lift you up, and that you stay safe and healthy every single day. You deserve the absolute best that life has to offer, and I hope this year brings you so much happiness, peace of mind, and unforgettable memories.</p>
+                    <p style="margin-bottom: 15px;">In this moment gusto ko lang sabihin sayo kung how much it means to me that you let me stay by your side and ligawan ka. Getting to know you better every single day has honestly been the best part of my year. I always look forward to talking to you, hearing your laugh, and seeing your smile because you have this effortless way of making ordinary days feel a lot brighter. I want you to know how much I truly appreciate you just being you, and how lucky I feel to have you in my life.</p>
+                    <p style="margin-bottom: 15px;">You know the moment na payagan mo ko ligawan ka is a big privilege, and as you start this journey into adulthood, Gusto ko lang ipromise sayo that I will always treat you with the utmost respect, patience, and care. I’m more than willing to take things at your own pace, and I'll always be here to support your dreams and cheer you on in everything you do. Whenever you feel tired, stressed out, or just need someone to vent to after a long day, please remember that I am always just one call or message away. I want to be someone you can always count on, lean on, and trust, no matter what happens.</p>
+                    <p style="margin-bottom: 15px;">I hope you ienjoy mo every single second or moments sa party ngayon kasi you deserve to feel like a princess. I know you look absolutely stunning tonight, and I am so proud to be with you and cheering you on.</p>
+                    <p style="margin-bottom: 15px;">Have the happiest 18th birthday! Enjoy your special night, and let's make it a memory you'll cherish forever!✨</p>
                 </div>
 
-                <!-- LOVE LETTER CONTENT WITH SECOND PAGE NAVIGATION TRIGGER -->
+                <!-- LOVE LETTER CONTAINER -->
                 <div class="letter love-text hidden" id="loveLetter">
-                    <div class="love-text-content">
-                        <h3>My Love, ❤️</h3>
-                        <p>Watching you grow into the incredible person you are today has been one of my greatest joys. On your 18th birthday, I want you to know how much you truly mean to me, and how deeply you are loved. Happy Birthday!</p>
-                        
-                        <!-- Box Button below text -->
-                        <button class="btn gallery-trigger-btn" id="goToGalleryBtn">Our Memories 📸</button>
-                    </div>
+                    <h3>To My Favorite Person ❤️</h3>
+                    <p style="margin-bottom: 15px;">Every single memory we hold together is incredibly special to me. From the simple conversations to the big laughs, you make everything look brighter. I want to look back at all these beautiful moments we've shared because each one holds a very unique place in my heart.</p>
+                    <p style="margin-bottom: 15px;">I compiled some of our favorite photos and clips below. Each one of them has a hidden little letter from me to you, explaining exactly what made that specific moment unforgettable.</p>
+                    
+                    <button class="btn gallery-trigger-btn" id="goToGalleryBtn">Our Memories 📸</button>
                 </div>
             </div>
         </div>
@@ -528,12 +653,61 @@
     <div class="gallery-view" id="galleryView">
         <h2>Our Beautiful Memories ✨</h2>
         <div class="photo-grid">
-            <div class="polaroid-frame" style="--rotation: -3deg;"><img src="1.jpg" alt="Memory 1"></div>
-            <div class="polaroid-frame" style="--rotation: 2deg;"><img src="2.jpg" alt="Memory 2"></div>
-            <div class="polaroid-frame" style="--rotation: -1deg;"><img src="3.jpg" alt="Memory 3"></div>
-            <div class="polaroid-frame" style="--rotation: 4deg;"><img src="4.jpg" alt="Memory 4"></div>
+            
+            <!-- Polaroid 1 -->
+            <div class="polaroid-frame" style="--rotation: -3deg;" onclick="openMediaPage('4.jpg', 'image', 'Here is the custom unique note for the image photo layout 4. You can edit this text to whatever special memory you want to write down!')">
+                <div class="polaroid-pin"></div>
+                <img src="4.jpg" alt="Memory 4">
+                <div class="polaroid-caption">Us ❤️ 🌸</div>
+                <div class="polaroid-hint">Tap to view note 💌</div>
+            </div>
+            
+            <!-- Polaroid 2 -->
+            <div class="polaroid-frame" style="--rotation: 2deg;" onclick="openMediaPage('5.jpg', 'image', 'Here is your dedicated special note layout for photo number 5. Type your beautiful caption or story directly here.')">
+                <div class="polaroid-pin"></div>
+                <img src="5.jpg" alt="Memory 5">
+                <div class="polaroid-caption">Happy Days ✨ 🌿</div>
+                <div class="polaroid-hint">Tap to view note 💌</div>
+            </div>
+            
+            <!-- Polaroid 3 -->
+            <div class="polaroid-frame" style="--rotation: -2deg;" onclick="openMediaPage('vid1.mp4', 'video', 'This letter belongs strictly to video clip 1. Share something sweet about what was happening when you recorded this!')">
+                <div class="polaroid-pin"></div>
+                <div class="video-preview-wrapper">
+                    <video src="vid1.mp4" muted loop autoplay playsinline></video>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="polaroid-caption">Moments 🎥 🧸</div>
+                <div class="polaroid-hint">Tap to view note 💌</div>
+            </div>
+            
+            <!-- Polaroid 4 -->
+            <div class="polaroid-frame" style="--rotation: 3deg;" onclick="openMediaPage('vid2.mp4', 'video', 'This is the personal custom letter attached directly to video clip 2. Perfect place for sharing inside jokes or dates!')">
+                <div class="polaroid-pin"></div>
+                <div class="video-preview-wrapper">
+                    <video src="vid2.mp4" muted loop autoplay playsinline></video>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="polaroid-caption">Forever 💕 🪐</div>
+                <div class="polaroid-hint">Tap to view note 💌</div>
+            </div>
+            
         </div>
-        <button class="btn back-btn" id="closeGalleryBtn">Back to Letter</button>
+
+        <button class="btn back-btn" id="closeGalleryBtn">Back to Envelope</button>
+    </div>
+
+    <!-- THIRD PAGE: FULL CLEAN INDEPENDENT TARGET VIEW PAGE -->
+    <div class="full-media-page" id="fullMediaPage">
+        <div class="media-content-container">
+            <div id="mediaTargetContainer"></div>
+            
+            <div class="media-caption">
+                <p id="mediaCaptionText"></p>
+            </div>
+            
+            <button class="btn back-btn" onclick="closeMediaPage()">Back to Gallery</button>
+        </div>
     </div>
 
     <!-- Script Flow Adjustments -->
@@ -635,15 +809,13 @@
         }
 
         envelopeContainer.addEventListener("click", function(e) {
-            // Prevent closure toggle if clicking inside the box button link directly
             if (e.target !== goToGalleryBtn) {
                 envelopeContainer.classList.toggle("open");
             }
         });
 
-        // SECOND PAGE ROUTING INTERACTION
         goToGalleryBtn.addEventListener("click", function(e) {
-            e.stopPropagation(); // Stops parent envelope wrapper conflicts
+            e.stopPropagation(); 
             envelopeWrapper.style.opacity = "0";
             setTimeout(() => {
                 envelopeWrapper.style.display = "none";
@@ -669,7 +841,39 @@
         checkAccess();
         setInterval(checkAccess, 1000);
     });
+
+    function openMediaPage(src, type, customMessageText) {
+        const galleryView = document.getElementById('galleryView');
+        const fullMediaPage = document.getElementById('fullMediaPage');
+        const targetContainer = document.getElementById('mediaTargetContainer');
+        const captionText = document.getElementById('mediaCaptionText');
+        
+        targetContainer.innerHTML = '';
+        captionText.innerText = customMessageText;
+        
+        if (type === 'image') {
+            targetContainer.innerHTML = `<img src="${src}" class="focused-media-item" />`;
+        } else if (type === 'video') {
+            targetContainer.innerHTML = `<video src="${src}" class="focused-media-item" controls autoplay loop playsinline></video>`;
+        }
+        
+        galleryView.style.display = 'none';
+        fullMediaPage.style.display = 'flex';
+    }
+
+    function closeMediaPage() {
+        const galleryView = document.getElementById('galleryView');
+        const fullMediaPage = document.getElementById('fullMediaPage');
+        const targetContainer = document.getElementById('mediaTargetContainer');
+        
+        const activeVideo = targetContainer.querySelector('video');
+        if (activeVideo) {
+            activeVideo.pause();
+        }
+        
+        fullMediaPage.style.display = 'none';
+        galleryView.style.display = 'block';
+    }
     </script>
 </body>
-
 </html>
