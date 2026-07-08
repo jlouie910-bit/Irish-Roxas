@@ -20,7 +20,7 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
-            padding: 20px 10px;
+            padding: 20px 15px;
         }
 
         /* --- FALLING ELEMENTS STYLE --- */
@@ -181,7 +181,7 @@
             transform: scale(1.02) translateY(-1px);
         }
 
-        /* --- ENVELOPE RESPONSIVE STRUCTURAL LAYOUT --- */
+        /* --- 100% RESPONSIBLE ENVELOPE STRUCTURAL LAYOUT --- */
         .envelope-wrapper {
             display: none;
             flex-direction: column;
@@ -190,14 +190,14 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             width: 100%;
-            max-width: 550px;
-            margin-top: 140px; /* Safe clearing gap when letter pushes up */
+            max-width: 500px;
+            margin-top: 160px; /* Safe clearing space for sliding letter on phones */
         }
 
         .envelope-container {
             position: relative;
             width: 100%;
-            height: 360px;
+            height: 300px;
             cursor: pointer;
             perspective: 1000px;
         }
@@ -208,58 +208,58 @@
             height: 100%;
             background: #ef4444;
             border-radius: 0 0 12px 12px;
-            box-shadow: 0 20px 40px rgba(239,68,68,0.2);
+            box-shadow: 0 15px 35px rgba(239,68,68,0.25);
+            overflow: visible;
         }
 
-        .envelope.love-theme { background: #7c3aed; }
+        .envelope.love-theme { 
+            background: #7c3aed; 
+            box-shadow: 0 15px 35px rgba(124,58,237,0.25);
+        }
 
+        /* SVG Clip-Path Engine for flawless scaling shapes */
         .flap {
             position: absolute;
             top: 0;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 275px solid transparent;
-            border-right: 275px solid transparent;
-            border-top: 180px solid #f87171;
+            width: 100%;
+            height: 150px;
+            background: #f87171;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
             transform-origin: top;
-            transition: transform 0.4s ease 0.2s;
+            transition: transform 0.4s ease 0.2s, z-index 0.1s ease;
             z-index: 3;
         }
-        .envelope.love-theme .flap { border-top-color: #a78bfa; }
+        .envelope.love-theme .flap { background: #a78bfa; }
 
         .pocket {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 275px solid #fca5a5;
-            border-right: 275px solid #fca5a5;
-            border-bottom: 180px solid #fca5a5;
+            width: 100%;
+            height: 100%;
+            background: #fca5a5;
+            clip-path: polygon(0 40%, 50% 75%, 100% 40%, 100% 100%, 0 100%);
             border-radius: 0 0 12px 12px;
             z-index: 2;
         }
-        .envelope.love-theme .pocket {
-            border-left-color: #8b5cf6;
-            border-right-color: #8b5cf6;
-            border-bottom-color: #8b5cf6;
-        }
+        .envelope.love-theme .pocket { background: #8b5cf6; }
 
+        /* Smooth slide-out inner letter frame */
         .letter {
             position: absolute;
             bottom: 15px;
             left: 5%;
             width: 90%;
-            height: 320px;
+            height: 270px;
             background: #fffdf6;
             border-radius: 8px;
-            padding: 25px 25px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
             opacity: 0;
-            transform: translateY(40px) scale(0.9);
+            transform: translateY(30px) scale(0.95);
             pointer-events: none;
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.4s ease;
             z-index: 1;
             text-align: left;
             overflow-y: auto;
@@ -268,7 +268,7 @@
 
         .letter h3 {
             margin-bottom: 15px;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             text-align: center;
         }
         
@@ -357,7 +357,7 @@
 
         .polaroid-frame img, .video-preview-wrapper video {
             width: 100%;
-            height: 140px;
+            height: 135px;
             object-fit: cover;
             border-radius: 2px;
         }
@@ -437,7 +437,7 @@
             width: auto;
         }
 
-        /* --- ANIMATION ACTIVE STATES --- */
+        /* --- ANIMATION INTERACTION ACTIONS --- */
         .envelope-container.open .flap {
             transform: rotateX(180deg);
             z-index: 0;
@@ -445,7 +445,7 @@
 
         .envelope-container.open .letter {
             opacity: 1;
-            transform: translateY(-160px) scale(1);
+            transform: translateY(-150px) scale(1);
             pointer-events: auto;
             z-index: 4;
         }
@@ -464,41 +464,33 @@
 
         .hidden { display: none !important; }
 
-        /* --- MOBILE SCREEN MEDIA ADJUSTMENTS --- */
-        @media (max-width: 580px) {
+        /* --- HARD RESPONSIVE BREAKPOINT CORRECTIONS --- */
+        @media (max-width: 480px) {
             .envelope-wrapper {
-                margin-top: 200px; /* Gives more room for the pulled letter on phones */
-            }
-            .flap {
-                border-left-width: 175px;
-                border-right-width: 175px;
-                border-top-width: 120px;
-            }
-            .pocket {
-                border-left-width: 175px;
-                border-right-width: 175px;
-                border-bottom-width: 120px;
+                margin-top: 180px;
             }
             .envelope-container {
-                height: 240px; /* Scale down absolute dimensions for mobile screens */
+                height: 220px;
+            }
+            .flap {
+                height: 110px;
             }
             .envelope-container.open .letter {
-                transform: translateY(-180px) scale(1.02); /* Clean lift transition on small viewports */
-                height: 280px;
+                transform: translateY(-140px) scale(1.02);
+                height: 250px;
             }
             .polaroid-frame img, .video-preview-wrapper video {
-                height: 110px; /* Adjust grid imagery height */
+                height: 105px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Floating Mixer -->
     <script>
         const romanticEmojis = ['🌸', '✨', '❤️', '💙', '💕', '🔮', '💖', '🌹'];
         const projectImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg']; 
-        const totalParticles = 25; // Optimized count for clean performance on mobile phones
+        const totalParticles = 25; 
 
         for (let i = 0; i < totalParticles; i++) {
             let container = document.createElement('div');
@@ -528,14 +520,13 @@
         }
     </script>
 
-    <!-- MAIN INTERFACE PAGE -->
     <div class="card locked" id="greetingCard">
         <div class="lock-overlay" id="lockNotice">
             <h3>🔒 Inside is Sealed</h3>
             <p>Unlocks when time runs out...</p>
         </div>
 
-        <h1>Happy 18th Birthday! 🎉</h1>
+        <h1>Happy Birthday Baby! 🎉</h1>
         <h2>Welcome to Chapter 18 ✨</h2>
         
         <div class="countdown-container" id="countdownBoard">
@@ -565,14 +556,12 @@
         </div>
     </div>
 
-    <!-- ENVELOPE INTERACTION INTERFACE -->
     <div class="envelope-wrapper" id="envelopeWrapper">
         <div class="envelope-container" id="envelopeContainer">
             <div class="envelope" id="mainEnvelopeElement">
                 <div class="flap"></div>
                 <div class="pocket"></div>
 
-                <!-- BIRTHDAY LETTER CONTENT -->
                 <div class="letter birthday-text" id="birthdayLetter">
                     <h3>Happy 18th Birthday!</h3>
                     <p style="margin-bottom: 15px;">This day alam kong ito yung special day sayo, if you know kung gaano ako kasaya even if wala ako sa debut mo or party mo i still hope this letter makes you happy Kahit papaano and super saya ko na naabutan ko yung 18th birthday mo. Hindi man kita makita ngayong araw mismo sa party mo i know parin kung gaano ka kaganda and watching you as an adult is a moment na super grateful to share it with you. 18 is a big milestone, and being able to witness you reach it is something na hinding hindi ko malilimutan.</p>
@@ -583,7 +572,6 @@
                     <p style="margin-bottom: 15px;">Have the happiest 18th birthday! Enjoy your special night, and let's make it a memory you'll cherish forever!✨</p>
                 </div>
 
-                <!-- LOVE LETTER CONTAINER -->
                 <div class="letter love-text hidden" id="loveLetter">
                     <h3>To My Favorite Person ❤️</h3>
                     <p style="margin-bottom: 15px;">Every single memory we hold together is incredibly special to me. From the simple conversations to the big laughs, you make everything look brighter. I want to look back at all these beautiful moments we've shared because each one holds a very unique place in my heart.</p>
@@ -596,12 +584,10 @@
         <button class="btn back-btn" id="backBtn">Go Back</button>
     </div>
 
-    <!-- SECOND PAGE: GALLERY FRAME SCREEN -->
     <div class="gallery-view" id="galleryView">
         <h2>Our Beautiful Memories ✨</h2>
         <div class="photo-grid">
             
-            <!-- Polaroid 1 -->
             <div class="polaroid-frame" style="--rotation: -3deg;" onclick="openMediaPage('4.jpg', 'image', 'Here is the custom unique note for the image photo layout 4. You can edit this text to whatever special memory you want to write down!')">
                 <div class="polaroid-pin"></div>
                 <img src="4.jpg" alt="Memory 4">
@@ -609,7 +595,6 @@
                 <div class="polaroid-hint">Tap to view note 💌</div>
             </div>
             
-            <!-- Polaroid 2 -->
             <div class="polaroid-frame" style="--rotation: 2deg;" onclick="openMediaPage('5.jpg', 'image', 'Here is your dedicated special note layout for photo number 5. Type your beautiful caption or story directly here.')">
                 <div class="polaroid-pin"></div>
                 <img src="5.jpg" alt="Memory 5">
@@ -617,7 +602,6 @@
                 <div class="polaroid-hint">Tap to view note 💌</div>
             </div>
             
-            <!-- Polaroid 3 -->
             <div class="polaroid-frame" style="--rotation: -2deg;" onclick="openMediaPage('vid1.mp4', 'video', 'This letter belongs strictly to video clip 1. Share something sweet about what was happening when you recorded this!')">
                 <div class="polaroid-pin"></div>
                 <div class="video-preview-wrapper">
@@ -628,7 +612,6 @@
                 <div class="polaroid-hint">Tap to view note 💌</div>
             </div>
             
-            <!-- Polaroid 4 -->
             <div class="polaroid-frame" style="--rotation: 3deg;" onclick="openMediaPage('vid2.mp4', 'video', 'This is the personal custom letter attached directly to video clip 2. Perfect place for sharing inside jokes or dates!')">
                 <div class="polaroid-pin"></div>
                 <div class="video-preview-wrapper">
@@ -644,7 +627,6 @@
         <button class="btn back-btn" id="closeGalleryBtn">Back to Envelope</button>
     </div>
 
-    <!-- THIRD PAGE: FULL CLEAN INDEPENDENT TARGET VIEW PAGE -->
     <div class="full-media-page" id="fullMediaPage">
         <div class="media-content-container">
             <div id="mediaTargetContainer"></div>
@@ -657,7 +639,6 @@
         </div>
     </div>
 
-    <!-- Script Flow Adjustments -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const targetDate = new Date("July 26, 2026 00:00:00").getTime();
