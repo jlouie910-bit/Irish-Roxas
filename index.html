@@ -18,8 +18,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            padding: 20px 10px;
         }
 
         /* --- FALLING ELEMENTS STYLE --- */
@@ -43,12 +44,12 @@
         /* --- CARD STYLE --- */
         .card {
             background: rgba(255, 255, 255, 0.90);
-            padding: 45px 40px;
+            padding: 45px 30px;
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(109, 40, 217, 0.12), inset 0 0 20px rgba(254, 202, 202, 0.3);
             text-align: center;
             max-width: 460px;
-            width: 90%;
+            width: 100%;
             z-index: 10;
             backdrop-filter: blur(8px);
             border: 2px solid rgba(167, 139, 250, 0.4);
@@ -66,21 +67,19 @@
 
         .card h1 {
             color: #ef4444; 
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 5px;
             letter-spacing: 1px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            transition: filter 0.4s ease, opacity 0.4s ease;
         }
 
         .card h2 {
             color: #6d28d9; 
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 25px;
             font-weight: 600;
-            transition: filter 0.4s ease, opacity 0.4s ease;
         }
 
         /* --- THE COUNTDOWN LAYOUT --- */
@@ -98,21 +97,20 @@
             color: #fffdf6;
             padding: 12px 8px;
             border-radius: 14px;
-            min-width: 72px;
+            min-width: 68px;
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .countdown-number {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: bold;
             font-family: 'Segoe UI', sans-serif;
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .countdown-label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.9;
@@ -120,12 +118,11 @@
         }
 
         .status-msg {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #4b5563;
             font-style: italic;
             margin-bottom: 20px;
             font-family: 'Segoe UI', sans-serif;
-            transition: filter 0.4s ease, opacity 0.4s ease;
         }
 
         /* --- LOCK OVERLAY --- */
@@ -138,24 +135,13 @@
             text-align: center;
             font-family: 'Segoe UI', sans-serif;
             color: #4c1d95;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 20px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
-            width: 80%;
+            width: 85%;
             pointer-events: none;
-        }
-
-        .lock-overlay h3 {
-            margin-bottom: 3px;
-            font-size: 1.1rem;
-            color: #6d28d9;
-        }
-
-        .lock-overlay p {
-            font-size: 0.85rem;
-            opacity: 0.8;
         }
 
         /* --- BUTTONS --- */
@@ -163,7 +149,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            transition: filter 0.4s ease, opacity 0.4s ease;
         }
 
         .btn {
@@ -180,16 +165,8 @@
             width: 100%;
         }
 
-        .wish-btn {
-            background: linear-gradient(45deg, #f87171, #ef4444); 
-            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.3);
-        }
-
-        .love-btn {
-            background: linear-gradient(45deg, #7c3aed, #4f46e5); 
-            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.3);
-        }
-
+        .wish-btn { background: linear-gradient(45deg, #f87171, #ef4444); box-shadow: 0 5px 20px rgba(239, 68, 68, 0.3); }
+        .love-btn { background: linear-gradient(45deg, #7c3aed, #4f46e5); box-shadow: 0 5px 20px rgba(124, 58, 237, 0.3); }
         .gallery-trigger-btn {
             background: linear-gradient(135deg, #7c3aed, #4f46e5);
             padding: 12px 32px;
@@ -198,14 +175,13 @@
             margin: 20px auto 10px auto;
             display: block;
             width: fit-content;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
         }
 
         .wish-btn:hover:not(:disabled), .love-btn:hover:not(:disabled), .gallery-trigger-btn:hover {
-            transform: scale(1.03) translateY(-2px);
+            transform: scale(1.02) translateY(-1px);
         }
 
-        /* --- ENVELOPE STRUCTURAL LAYOUT --- */
+        /* --- ENVELOPE RESPONSIVE STRUCTURAL LAYOUT --- */
         .envelope-wrapper {
             display: none;
             flex-direction: column;
@@ -214,11 +190,13 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             width: 100%;
+            max-width: 550px;
+            margin-top: 140px; /* Safe clearing gap when letter pushes up */
         }
 
         .envelope-container {
             position: relative;
-            width: 550px;
+            width: 100%;
             height: 360px;
             cursor: pointer;
             perspective: 1000px;
@@ -231,14 +209,9 @@
             background: #ef4444;
             border-radius: 0 0 12px 12px;
             box-shadow: 0 20px 40px rgba(239,68,68,0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .envelope.love-theme {
-            background: #7c3aed;
-            border: 1px solid rgba(232, 219, 251, 0.3);
-            box-shadow: 0 20px 40px rgba(124,58,237,0.2);
-        }
+        .envelope.love-theme { background: #7c3aed; }
 
         .flap {
             position: absolute;
@@ -253,7 +226,6 @@
             transition: transform 0.4s ease 0.2s;
             z-index: 3;
         }
-
         .envelope.love-theme .flap { border-top-color: #a78bfa; }
 
         .pocket {
@@ -268,7 +240,6 @@
             border-radius: 0 0 12px 12px;
             z-index: 2;
         }
-
         .envelope.love-theme .pocket {
             border-left-color: #8b5cf6;
             border-right-color: #8b5cf6;
@@ -278,12 +249,12 @@
         .letter {
             position: absolute;
             bottom: 15px;
-            left: 30px;
-            width: 490px;
-            height: 310px;
+            left: 5%;
+            width: 90%;
+            height: 320px;
             background: #fffdf6;
             border-radius: 8px;
-            padding: 30px 35px;
+            padding: 25px 25px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15);
             opacity: 0;
             transform: translateY(40px) scale(0.9);
@@ -296,8 +267,8 @@
         }
 
         .letter h3 {
-            margin-bottom: 20px;
-            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
             text-align: center;
         }
         
@@ -306,10 +277,9 @@
 
         .letter p {
             color: #333;
-            font-size: 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.7;
             text-align: justify;
-            text-justify: inter-word;
         }
 
         /* --- SECOND PAGE: PHOTO GALLERY PANEL --- */
@@ -319,7 +289,7 @@
             max-width: 650px;
             background: rgba(255, 255, 255, 0.96);
             border-radius: 24px;
-            padding: 45px 35px 35px 35px;
+            padding: 35px 20px;
             box-shadow: 0 20px 45px rgba(0,0,0,0.08);
             z-index: 30;
             text-align: center;
@@ -329,107 +299,71 @@
 
         .gallery-view h2 {
             color: #7c3aed;
-            margin-bottom: 35px;
-            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
         }
 
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 35px 25px;
+            gap: 25px 15px;
             margin-bottom: 15px;
         }
 
         /* --- HIGHLY AESTHETIC POLAROID FRAME DESIGN --- */
         .polaroid-frame {
             background: #ffffff;
-            padding: 12px 12px 14px 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 20px rgba(124, 58, 237, 0.06), 0 1px 3px rgba(0,0,0,0.05);
+            padding: 10px 10px 12px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 20px rgba(124, 58, 237, 0.06);
             border-radius: 4px;
             border: 1px solid rgba(233, 213, 255, 0.4);
             transform: rotate(var(--rotation));
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
         }
 
-        /* Cute Metallic Push Pin Accent */
         .polaroid-pin {
             position: absolute;
-            top: -12px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 14px;
-            height: 14px;
-            background: radial-gradient(circle at 4px 4px, #ff8fa3, #ff4d6d);
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle at 3px 3px, #ff8fa3, #ff4d6d);
             border-radius: 50%;
             z-index: 12;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .polaroid-pin::after {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: 6px;
-            width: 2px;
-            height: 8px;
-            background: #94a3b8;
-            transform: rotate(15deg);
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* Soft Elegant Caption Text underneath photo grid items */
         .polaroid-caption {
             font-family: 'Georgia', serif;
             font-style: italic;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: #6b21a8;
-            margin-top: 12px;
+            margin-top: 10px;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
         }
 
-        /* Interactive Action Hint */
         .polaroid-hint {
             font-family: 'Segoe UI', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #a855f7;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
             opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .polaroid-frame:hover {
-            transform: rotate(0deg) translateY(-6px) scale(1.04);
-            box-shadow: 0 20px 35px rgba(124, 58, 237, 0.12);
-            z-index: 5;
-        }
-
-        .polaroid-frame:hover .polaroid-hint {
-            opacity: 1;
-            color: #db2777;
         }
 
         .polaroid-frame img, .video-preview-wrapper video {
             width: 100%;
-            height: 185px;
+            height: 140px;
             object-fit: cover;
             border-radius: 2px;
-            display: block;
-            border: 1px solid rgba(0,0,0,0.03);
-            filter: sepia(8%) brightness(98%) contrast(102%);
         }
 
         .video-preview-wrapper {
             position: relative;
-            border-radius: 2px;
             overflow: hidden;
         }
 
@@ -441,13 +375,12 @@
             background: rgba(255, 255, 255, 0.92);
             color: #7c3aed;
             border-radius: 50%;
-            width: 42px;
-            height: 42px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 14px;
         }
 
         /* --- THIRD PAGE: FULL CLEAN INDEPENDENT TARGET VIEW PAGE --- */
@@ -462,41 +395,35 @@
             display: none;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease forwards;
         }
 
         .media-content-container {
             max-width: 520px;
             width: 90%;
             background: #ffffff;
-            padding: 24px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(109, 40, 217, 0.15);
             text-align: center;
-            border: 1px solid #e9d5ff;
         }
 
         .focused-media-item {
             width: 100%;
-            max-height: 420px;
+            max-height: 320px;
             object-fit: contain;
             border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
         }
 
         .media-caption p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: #4b5563;
             line-height: 1.6;
-            margin: 10px 0 15px 0;
-            font-family: 'Segoe UI', sans-serif;
-            text-align: justify;
-            text-justify: inter-word;
             background: #fff0f3;
-            padding: 14px;
+            padding: 12px;
             border-radius: 10px;
             border-left: 4px solid #7c3aed;
+            text-align: justify;
         }
 
         .back-btn {
@@ -506,28 +433,21 @@
             backdrop-filter: blur(5px);
             padding: 10px 26px;
             font-size: 0.95rem;
-            margin-top: 15px;
+            margin-top: 10px;
             width: auto;
-        }
-
-        .back-btn:hover {
-            background: #7c3aed;
-            color: #fff;
         }
 
         /* --- ANIMATION ACTIVE STATES --- */
         .envelope-container.open .flap {
             transform: rotateX(180deg);
             z-index: 0;
-            transition: transform 0.4s ease, z-index 0.1s ease 0.2s;
         }
 
         .envelope-container.open .letter {
             opacity: 1;
-            transform: translateY(-200px) scale(1);
+            transform: translateY(-160px) scale(1);
             pointer-events: auto;
             z-index: 4;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         @keyframes floatUp {
@@ -543,6 +463,33 @@
         }
 
         .hidden { display: none !important; }
+
+        /* --- MOBILE SCREEN MEDIA ADJUSTMENTS --- */
+        @media (max-width: 580px) {
+            .envelope-wrapper {
+                margin-top: 200px; /* Gives more room for the pulled letter on phones */
+            }
+            .flap {
+                border-left-width: 175px;
+                border-right-width: 175px;
+                border-top-width: 120px;
+            }
+            .pocket {
+                border-left-width: 175px;
+                border-right-width: 175px;
+                border-bottom-width: 120px;
+            }
+            .envelope-container {
+                height: 240px; /* Scale down absolute dimensions for mobile screens */
+            }
+            .envelope-container.open .letter {
+                transform: translateY(-180px) scale(1.02); /* Clean lift transition on small viewports */
+                height: 280px;
+            }
+            .polaroid-frame img, .video-preview-wrapper video {
+                height: 110px; /* Adjust grid imagery height */
+            }
+        }
     </style>
 </head>
 <body>
@@ -551,31 +498,31 @@
     <script>
         const romanticEmojis = ['🌸', '✨', '❤️', '💙', '💕', '🔮', '💖', '🌹'];
         const projectImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg']; 
-        const totalParticles = 40;
+        const totalParticles = 25; // Optimized count for clean performance on mobile phones
 
         for (let i = 0; i < totalParticles; i++) {
             let container = document.createElement('div');
             container.classList.add('falling-particle');
             
-            if (Math.random() < 0.30) {
+            if (Math.random() < 0.25) {
                 let img = document.createElement('img');
                 img.src = projectImages[Math.floor(Math.random() * projectImages.length)]; 
                 img.classList.add('falling-image');
                 
-                let randomWidth = Math.floor(Math.random() * 40 + 85); 
+                let randomWidth = Math.floor(Math.random() * 25 + 55); 
                 img.style.width = randomWidth + 'px';
-                img.style.height = (randomWidth * 1.4) + 'px';
+                img.style.height = (randomWidth * 1.3) + 'px';
                 
                 container.appendChild(img);
             } else {
                 container.innerText = romanticEmojis[Math.floor(Math.random() * romanticEmojis.length)];
-                container.style.fontSize = (Math.random() * 22 + 14) + 'px';
+                container.style.fontSize = (Math.random() * 16 + 12) + 'px';
             }
 
-            container.style.left = Math.random() * 100 + 'vw';
-            container.style.top = Math.random() * 100 + 'vh';
-            container.style.animationDuration = (Math.random() * 7 + 8) + 's';
-            container.style.animationDelay = (Math.random() * 6) + 's';
+            container.style.left = Math.random() * 95 + 'vw';
+            container.style.top = Math.random() * 95 + 'vh';
+            container.style.animationDuration = (Math.random() * 6 + 7) + 's';
+            container.style.animationDelay = (Math.random() * 4) + 's';
             
             document.body.appendChild(container);
         }
@@ -732,7 +679,6 @@
         const birthdayLetter = document.getElementById("birthdayLetter");
         const loveLetter = document.getElementById("loveLetter");
 
-        // Gallery Elements
         const goToGalleryBtn = document.getElementById("goToGalleryBtn");
         const galleryView = document.getElementById("galleryView");
         const closeGalleryBtn = document.getElementById("closeGalleryBtn");
